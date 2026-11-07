@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>ARVEX</title>
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M12 50 32 12l20 38h-9L32 28 21 50z' fill='%23c8a24a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--card:#111110;--line:#2a261c;--gold:#c8a24a;--gold2:#e6c97a;--white:#f5f3ee;--mut:#9a9588;--bad:#d9685b;--ok:#6fbf8b}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--white);font:400 16px/1.5 Manrope,system-ui,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+h1,h2,.logo,.big{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700}
+a{color:var(--gold2)}
+.boot{display:grid;place-items:center;height:100vh;font:700 28px "Cormorant Garamond",serif;color:var(--gold);letter-spacing:.3em}
+.wrap{max-width:600px;margin:0 auto;padding:8px 16px 96px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px;max-width:600px;margin:0 auto}
+.logo{font-size:26px;color:var(--gold);letter-spacing:.26em;text-decoration:none}
+.btn,button{font:700 15px Manrope,sans-serif;border:0;border-radius:10px;padding:13px 18px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a1405;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.btn:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--white);outline-offset:2px}
+button:disabled{opacity:.5}
+.ghost{background:none!important;border:1px solid var(--line);color:var(--white)!important}
+button.sm{padding:8px 12px;font-size:13px}
+button.bad{background:none;border:1px solid var(--bad);color:var(--bad)}
+.hero{max-width:600px;margin:0 auto;padding:44px 20px 32px}
+.hero h1{font-size:clamp(44px,13vw,72px);line-height:1;margin-bottom:20px}
+.hero p{color:var(--mut);margin-bottom:26px;max-width:44ch}
+.hero small{display:block;margin-top:16px;color:var(--mut);font-size:13px}
+.steps{list-style:none;padding:0 20px 60px;max-width:600px;margin:0 auto;counter-reset:s}
+.steps li{counter-increment:s;padding:16px 0 16px 48px;border-top:1px solid var(--line);position:relative}
+.steps li:before{content:counter(s);position:absolute;left:0;top:14px;font:700 28px "Cormorant Garamond",serif;color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.auth{max-width:420px;margin:0 auto;padding:24px 20px}
+.auth h2{font-size:36px;margin-bottom:18px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 5px}
+input,textarea,select{width:100%;background:#0b0b0a;border:1px solid var(--line);color:var(--white);border-radius:10px;padding:13px;font:inherit}
+textarea{min-height:90px}
+.full{width:100%;margin-top:16px}
+.links{display:flex;justify-content:space-between;margin-top:16px;font-size:14px}
+.bal{border-color:var(--gold);background:linear-gradient(160deg,#17130a,#0b0b0a)}
+.bal span,.tile span{color:var(--mut);font-size:13px}
+.big{font-size:52px;color:var(--gold2);line-height:1.1}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.tile b{display:block;font-size:18px}
+h3{font-size:15px;margin:22px 0 10px;color:var(--gold)}
+.offer img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:12px;background:#1a1810}
+.offer h4{font-size:18px}
+.rw{float:right;background:var(--gold);color:#1a1405;border-radius:20px;padding:2px 12px;font-weight:700;font-size:14px}
+.offer p{color:var(--mut);font-size:14px;margin:6px 0}
+.el{font-size:13px;border-left:2px solid var(--gold);padding-left:10px;margin:8px 0 14px}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.li{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:14px;word-break:break-word}
+.li small,.mut{color:var(--mut);display:block;font-size:13px}
+.chip{font-size:12px;border-radius:20px;padding:2px 10px;border:1px solid var(--line);white-space:nowrap;height:fit-content}
+.requested,.submitted,.started,.open,.held,.posted{color:var(--gold2)}.approved,.paid,.published,.active,.pos,.closed{color:var(--ok)}.rejected,.neg,.suspended,.paused,.expired{color:var(--bad)}
+nav.b{position:fixed;left:0;right:0;bottom:0;background:#0a0a09;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom))}
+nav.b a,.tabs a{color:var(--mut);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:8px;position:relative}
+nav.b a.on,.tabs a.on{color:var(--gold2)}
+.dot{position:absolute;top:2px;right:2px;background:var(--bad);color:#fff;border-radius:9px;font-size:10px;padding:0 5px}
+.tabs{display:flex;overflow-x:auto;gap:4px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.tabs a{white-space:nowrap;font-size:14px}
+.empty{color:var(--mut);text-align:center;padding:24px 0}
+.banner{background:#17130a;border:1px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:14px;font-size:14px}
+dialog{background:var(--card);color:var(--white);border:1px solid var(--gold);border-radius:14px;padding:18px;width:min(92vw,440px);max-height:80vh;overflow:auto}
+dialog::backdrop{background:#000b}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:84px;background:var(--white);color:#111;padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;z-index:99;max-width:90vw}
+@media (prefers-reduced-motion:no-preference){.hero h1{animation:in .7s ease both}@keyframes in{from{opacity:0;transform:translateY(10px)}}}
+</style>
+</head><body>
+<div id="app"><p class="boot">ARVEX</p></div>
+<dialog id="dlg"></dialog>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,sendEmailVerification,updateProfile} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,addDoc,updateDoc,collection,query,where,getDocs,serverTimestamp,increment,runTransaction} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const fb=initializeApp({apiKey:"AIzaSyCh-1Z8icpi3tx5KBTL8KDtp_3jACVDlGs",authDomain:"arvex-3574e.firebaseapp.com",projectId:"arvex-3574e",storageBucket:"arvex-3574e.firebasestorage.app",messagingSenderId:"807167296334",appId:"1:807167296334:web:a0af8d0aa94b9756aa141f"});
+const auth=getAuth(fb),db=getFirestore(fb);
+
+const $=s=>document.querySelector(s),app=$('#app'),dlg=$('#dlg');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Number(n||0).toLocaleString('en-IN');
+const https=u=>/^https:\/\//.test(u||'')?esc(u):'';
+const dt=t=>t?.toDate?t.toDate().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'2-digit'}):'';
+const sum=(a,k)=>a.reduce((x,y)=>x+(y[k]||0),0);
+const newest=a=>a.sort((x,y)=>(y.createdAt?.seconds||y.startedAt?.seconds||0)-(x.createdAt?.seconds||x.startedAt?.seconds||0));
+const list=async(c,...w)=>(await getDocs(w.length?query(collection(db,c),...w):collection(db,c))).docs.map(d=>({id:d.id,...d.data()}));
+const clk=(u,id)=>https(u).replace(/\{clickid\}/g,encodeURIComponent(id));
+const live=o=>!o.endAt||o.endAt>Date.now();
+const chip=s=>`<span class="chip ${esc(s)}">${esc(s)}</span>`;
+const AE={'auth/invalid-credential':'Email or password is wrong.','auth/email-already-in-use':'This email is already registered. Try signing in.','auth/weak-password':'Use a password with at least 6 characters.','auth/invalid-email':'Enter a valid email address.','auth/too-many-requests':'Too many attempts. Try again in a few minutes.'};
+const err=e=>AE[e.code]||(e.code==='permission-denied'?'Not allowed. Check that the Firestore rules are published and your account is active.':e.message||'Something went wrong. Try again.');
+const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),3500)};
+const csv=(name,rows)=>{if(!rows.length)return toast('Nothing to export');const k=Object.keys(rows[0]),q=v=>'"'+String(v??'').replace(/"/g,'""').replace(/^([=+\-@])/,"'$1")+'"';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([k.join(',')+'\n'+rows.map(r=>k.map(c=>q(r[c])).join(',')).join('\n')],{type:'text/csv'}));a.download=name+'.csv';a.click()};
+
+let S={user:null,admin:false,ready:false},A={},dip=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+onAuthStateChanged(auth,async u=>{S.user=u;S.admin=false;if(u){try{S.admin=(await getDoc(doc(db,'admins',u.uid))).exists()}catch(e){}try{const r=doc(db,'wallets',u.uid);if(!(await getDoc(r)).exists())await setDoc(r,{available:0,lifetime:0,withdrawn:0,onHold:0,wseq:0})}catch(e){}}S.ready=true;route()});
+addEventListener('hashchange',route);
+
+const PRIV=['home','offers','tasks','wallet','profile','alerts','support','admin'];
+async function route(){
+ if(!S.ready)return;
+ const [p='',sub='']=(location.hash||'#/').slice(2).split('/');
+ if(PRIV.includes(p)&&!S.user){location.hash='#/login';return}
+ if(['login','register'].includes(p)&&S.user){location.hash='#/home';return}
+ if(p==='admin'&&!S.admin){location.hash='#/home';return}
+ if(p==='login'||p==='register'){app.innerHTML=authView(p);return}
+ if(!PRIV.includes(p)){app.innerHTML=landing();return}
+ app.innerHTML=shell(p,sub,'<p class="empty">Loading…</p>');
+ let unread=0;
+ try{const b=await V[p](sub);unread=(await list('notifications',where('uid','==',S.user.uid),where('read','==',false))).length;app.innerHTML=shell(p,sub,b,unread)}catch(e){app.innerHTML=shell(p,sub,`<p class="empty">${esc(err(e))}</p>`)}
+ scrollTo(0,0);
+}
+
+const landing=()=>`<header class="top"><a class="logo" href="#/">ARVEX</a><a class="btn ghost" href="#/${S.user?'home':'login'}">${S.user?'Open app':'Sign in'}</a></header>
+<main class="hero"><h1>Complete offers.<br>Earn verified rewards.</h1><p>Pick an offer, finish it, and once ARVEX verifies it the reward is added to your wallet.</p><a class="btn" href="#/register">Create free account</a> <button class="ghost" data-act="install">Install app</button><small>Rewards depend on offer eligibility and verification. Earnings are not guaranteed.</small></main>
+<ol class="steps"><li>Choose an offer that matches its eligibility.</li><li>Start it, complete it, and submit your proof.</li><li>After approval the reward lands in your balance and you can request a withdrawal.</li></ol>`;
+
+const authView=m=>{const r=m==='register';return `<header class="top"><a class="logo" href="#/">ARVEX</a></header><form class="auth" data-form="${m}"><h2>${r?'Create your account':'Welcome back'}</h2>
+${r?'<label for="n">Full name</label><input id="n" name="name" required maxlength="60" autocomplete="name">':''}
+<label for="e">Email</label><input id="e" name="email" type="email" required autocomplete="email">
+<label for="p">Password</label><input id="p" name="pass" type="password" required minlength="6" autocomplete="${r?'new':'current'}-password">
+<button class="btn full">${r?'Create account':'Sign in'}</button>
+<div class="links">${r?'<a href="#/login">Already have an account?</a>':'<a href="#/register">Create account</a><a href="#" data-act="reset">Forgot password?</a>'}</div></form>`};
+
+const shell=(p,sub,body,unread=0)=>`<header class="top"><a class="logo" href="#/home">ARVEX</a><a href="#/alerts" style="text-decoration:none;position:relative">🔔${unread?`<span class="dot">${unread}</span>`:''}</a></header><div class="wrap">${p==='admin'?adminTabs(sub||'dash'):''}${body}</div>
+<nav class="b">${[['home','Home'],['offers','Offers'],['tasks','My Tasks'],['wallet','Wallet'],['profile','Profile']].map(([k,l])=>`<a href="#/${k}" class="${k===p?'on':''}">${l}</a>`).join('')}</nav>`;
+
+const TABS=[['dash','Overview'],['users','Users'],['offers','Offers'],['tasks','Reviews'],['ledger','Ledger'],['wd','Withdrawals'],['reports','Reports'],['support','Support'],['settings','Settings'],['logs','Logs']];
+const adminTabs=t=>`<div class="tabs">${TABS.map(([k,l])=>`<a href="#/admin/${k}" class="${k===t?'on':''}">${l}</a>`).join('')}</div>`;
+const cfg=async()=>{const s=await getDoc(doc(db,'settings','config'));return s.exists()?s.data():{}};
+const W=async()=>{const s=await getDoc(doc(db,'wallets',S.user.uid));return s.exists()?s.data():{}};
+const rows=(a,f,e='Nothing yet.')=>a.length?a.map(f).join(''):`<p class="empty">${e}</p>`;
+const wallet4=(w,p)=>`<div class="card bal"><span>Available balance</span><div class="big">${inr(w.available)}</div></div><div class="grid"><div class="tile"><span>Pending</span><b>${inr(p)}</b></div><div class="tile"><span>Lifetime earnings</span><b>${inr(w.lifetime)}</b></div><div class="tile"><span>Withdrawn</span><b>${inr(w.withdrawn)}</b></div><div class="tile"><span>On hold for payout</span><b>${inr(w.onHold)}</b></div></div>`;
+
+const V={};
+V.home=async()=>{
+ const u=S.user.uid,[w,t,c,off,led,me]=await Promise.all([W(),list('userTasks',where('uid','==',u)),cfg(),list('offers',where('status','==','published')),list('ledger',where('uid','==',u)),getDoc(doc(db,'users',u))]);
+ return `${me.exists()&&me.data().status==='suspended'?'<div class="banner">Your account is restricted. Contact support.</div>':''}${c.announcement?`<div class="banner">${esc(c.announcement)}</div>`:''}
+<p class="mut" style="margin-bottom:10px">Hello, ${esc(S.user.displayName||S.user.email)}</p>${wallet4(w,sum(t.filter(x=>x.status==='submitted'),'reward'))}
+<div class="grid"><div class="tile"><span>Offers available</span><b>${off.filter(live).length}</b></div><div class="tile"><span>In progress</span><b>${t.filter(x=>['started','submitted'].includes(x.status)).length}</b></div></div>
+<a class="btn full" style="display:block" href="#/offers">Browse offers</a><h3>Recent activity</h3>${rows(newest(led).slice(0,4),x=>`<div class="li"><div>${esc(x.reason)}<small>${dt(x.createdAt)}</small></div><b class="${x.amount<0?'neg':'pos'}">${x.amount<0?'−':'+'}${inr(Math.abs(x.amount))}</b></div>`)}`;
+};
+V.offers=async()=>{
+ const [o,t]=await Promise.all([list('offers',where('status','==','published')),list('userTasks',where('uid','==',S.user.uid))]),m=Object.fromEntries(t.map(x=>[x.offerId,x])),a=o.filter(live);
+ return rows(a,x=>{const k=m[x.id];return `<article class="card offer">${https(x.imageUrl)?`<img src="${https(x.imageUrl)}" alt="" loading="lazy">`:''}<span class="rw">${inr(x.reward)}</span><h4>${esc(x.title)}</h4><p>${esc(x.description)}</p><div class="el">${esc(x.eligibility)}<small class="mut">One time per user${x.endAt?' · ends '+new Date(x.endAt).toLocaleDateString('en-IN'):''}</small></div>
+${k?`<div class="li" style="border:0;padding:0"><span>Your status</span>${chip(k.status)}</div>${k.status==='started'?`<div class="row" style="margin-top:10px"><a class="btn ghost sm" href="${clk(x.link,k.id)||'#'}" target="_blank" rel="noopener">Open offer</a>${x.verify==='postback'?'':`<button class="sm" data-act="proof" data-id="${esc(k.id)}">Submit proof</button>`}</div>${x.verify==='postback'?'<p class="mut" style="margin-top:8px">Your reward is added automatically after the advertiser confirms the task.</p>':''}`:''}`:`<button class="full" style="margin-top:0" data-act="start" data-id="${esc(x.id)}">Start</button>`}</article>`},'No offers are live right now. Check back soon.');
+};
+V.tasks=async()=>{const t=newest(await list('userTasks',where('uid','==',S.user.uid)));return rows(t,x=>`<div class="card"><div class="li" style="border:0;padding:0"><b>${esc(x.offerTitle)}</b>${chip(x.status)}</div><span class="mut">Reward ${inr(x.reward)} · started ${dt(x.startedAt)}${x.submittedAt?' · submitted '+dt(x.submittedAt):''}</span>${x.reviewReason?`<p style="margin-top:8px;font-size:14px">Note from ARVEX: ${esc(x.reviewReason)}</p>`:''}${x.status==='started'?`<button class="sm full" data-act="proof" data-id="${esc(x.id)}">Submit proof</button>`:''}${['rejected'].includes(x.status)?'<a class="mut" href="#/support" style="margin-top:8px">Dispute this decision</a>':''}</div>`,'You have not started any offers yet.')};
+V.wallet=async()=>{
+ const u=S.user.uid,[w,c,t,wd,led]=await Promise.all([W(),cfg(),list('userTasks',where('uid','==',u)),list('withdrawals',where('uid','==',u)),list('ledger',where('uid','==',u))]);
+ const open=wd.find(x=>['requested','approved'].includes(x.status)),min=c.minWithdraw;
+ return `${wallet4(w,sum(t.filter(x=>x.status==='submitted'),'reward'))}<p class="mut">Pending rewards cannot be withdrawn until they are approved.</p>
+<h3>Withdraw</h3>${!c.withdrawalsEnabled||min==null?'<div class="card empty">Withdrawals are not open yet.</div>':open?`<div class="card">You have an open request for ${inr(open.amount)} (${open.status}). You can send a new one after it is paid or rejected.</div>`:`<form class="card" data-form="withdraw"><span class="mut">Minimum withdrawal: ${inr(min)}</span><label for="a">Amount (₹)</label><input id="a" name="amount" type="number" min="${min}" max="${w.available||0}" step="1" required><label for="u">UPI ID</label><input id="u" name="payout" required maxlength="80" placeholder="name@bank" autocomplete="off"><button class="full">Request withdrawal</button></form>`}
+<h3>Withdrawal history</h3>${rows(newest(wd),x=>`<div class="li"><div>${inr(x.amount)} · ${esc(x.id.split('_')[1]?'Ref '+x.id.slice(-6):'')}<small>${dt(x.createdAt)}${x.rejectionReason?' · '+esc(x.rejectionReason):''}${x.payoutRef?' · paid ref '+esc(x.payoutRef):''}</small></div>${chip(x.status)}</div>`)}
+<h3>Transactions</h3>${rows(newest(led),x=>`<div class="li"><div>${esc(x.reason)}<small>${esc(x.type)} · ${dt(x.createdAt)} · ${esc(x.id.slice(0,10))}</small></div><div style="text-align:right"><b class="${x.amount<0?'neg':'pos'}">${x.amount<0?'−':'+'}${inr(Math.abs(x.amount))}</b>${chip(x.status)}</div></div>`)}`;
+};
+V.alerts=async()=>{const n=newest(await list('notifications',where('uid','==',S.user.uid)));return `${n.some(x=>!x.read)?'<button class="ghost sm" data-act="readall">Mark all as read</button>':''}${rows(n,x=>`<div class="li"><div><b>${esc(x.title)}</b><small style="color:var(--white)">${esc(x.body)}</small><small>${dt(x.createdAt)}</small></div>${x.read?'':'<span class="chip requested">new</span>'}</div>`,'No notifications yet.')}`};
+V.support=async()=>{const [t,c]=await Promise.all([list('tickets',where('uid','==',S.user.uid)),cfg()]);return `${c.supportContact?`<p class="mut">Contact: ${esc(c.supportContact)}</p>`:''}<form class="card" data-form="ticket"><label>Subject</label><input name="subject" required maxlength="80"><label>Message</label><textarea name="message" required maxlength="800" placeholder="Describe the problem. Mention the offer or withdrawal if there is one."></textarea><button class="full">Send</button></form><h3>Your tickets</h3>${rows(newest(t),x=>`<div class="card"><div class="li" style="border:0;padding:0"><b>${esc(x.subject)}</b>${chip(x.status)}</div><p class="mut">${esc(x.message)}</p>${x.reply?`<p style="margin-top:8px;font-size:14px">Reply: ${esc(x.reply)}</p>`:''}</div>`)}`};
+V.profile=async()=>{const m=await getDoc(doc(db,'users',S.user.uid)),d=m.exists()?m.data():{};return `<form class="card" data-form="profile"><label>Full name</label><input name="name" required maxlength="60" value="${esc(d.name||S.user.displayName)}"><label>Email</label><input value="${esc(S.user.email)}" disabled><p class="mut" style="margin-top:8px">Account ${chip(d.status||'active')} · joined ${dt(d.createdAt)}${S.user.emailVerified?'':' · email not verified'}</p><button class="full">Save name</button></form>
+<div class="card"><div class="row"><a class="btn ghost" href="#/alerts">Notifications</a><a class="btn ghost" href="#/support">Support</a></div><div class="row" style="margin-top:8px"><button class="ghost" data-act="install">Install app</button><button class="ghost" data-act="resetme">Change password</button>${S.user.emailVerified?'':'<button class="ghost" data-act="verify">Verify email</button>'}</div>${S.admin?'<a class="btn full" style="display:block" href="#/admin">Open admin panel</a>':''}<button class="bad full" data-act="logout">Sign out</button></div>`};
+
+const note=(t,uid,title,body)=>t.set(doc(collection(db,'notifications')),{uid,title,body,read:false,createdAt:serverTimestamp()});
+const alog=(t,action,type,id,reason)=>t.set(doc(collection(db,'adminLogs')),{actor:S.user.uid,actorEmail:S.user.email,action,targetType:type,targetId:id,reason:reason||'',createdAt:serverTimestamp()});
+const ask=(m,must)=>{const r=prompt(m);if(r===null||(must&&!r.trim()))throw new Error('Cancelled.');return (r||'').trim()};
+const taskReview=(id,ok,reason)=>runTransaction(db,async t=>{
+ const r=doc(db,'userTasks',id),s=await t.get(r);if(!s.exists()||s.data().status!=='submitted')throw new Error('Already processed.');
+ const d=s.data(),me=S.user.uid;
+ t.update(r,{status:ok?'approved':'rejected',reviewReason:reason||'',reviewedAt:serverTimestamp(),reviewedBy:me});
+ if(ok){t.set(doc(db,'wallets',d.uid),{available:increment(d.reward),lifetime:increment(d.reward)},{merge:true});t.set(doc(db,'ledger','reward_'+id),{uid:d.uid,type:'reward',amount:d.reward,status:'posted',sourceType:'task',sourceId:id,referenceId:id,reason:d.offerTitle,createdBy:me,createdAt:serverTimestamp()})}
+ note(t,d.uid,ok?'Reward approved':'Task rejected',ok?`${inr(d.reward)} was added for "${d.offerTitle}".`:`"${d.offerTitle}": ${reason}`);alog(t,ok?'task.approve':'task.reject','task',id,reason);
+});
+const wdAct=(id,act,x)=>runTransaction(db,async t=>{
+ const r=doc(db,'withdrawals',id),s=await t.get(r);if(!s.exists())throw new Error('Not found.');
+ const d=s.data(),w=(await t.get(doc(db,'wallets',d.uid))).data()||{},st=d.status,me=S.user.uid,W2=doc(db,'wallets',d.uid),L=k=>doc(db,'ledger',k+id);
+ if(act==='approve'){if(st!=='requested')throw new Error('Already processed.');if((w.available||0)<d.amount)throw new Error('User balance is lower than the request.');
+  t.update(r,{status:'approved',reviewedBy:me,reviewedAt:serverTimestamp()});t.update(W2,{available:increment(-d.amount),onHold:increment(d.amount)});t.set(L('wd_'),{uid:d.uid,type:'withdrawal',amount:-d.amount,status:'held',sourceType:'withdrawal',sourceId:id,referenceId:id,reason:'Withdrawal to '+d.payout,createdBy:me,createdAt:serverTimestamp()});note(t,d.uid,'Withdrawal approved',`${inr(d.amount)} is being paid out.`)}
+ else if(act==='paid'){if(st!=='approved')throw new Error('Approve it first.');t.update(r,{status:'paid',payoutRef:x,paidAt:serverTimestamp()});t.update(W2,{onHold:increment(-d.amount),withdrawn:increment(d.amount),wseq:increment(1)});t.update(L('wd_'),{status:'paid',referenceId:x});note(t,d.uid,'Withdrawal paid',`${inr(d.amount)} paid. Reference: ${x}`)}
+ else{if(!['requested','approved'].includes(st))throw new Error('Already processed.');t.update(r,{status:'rejected',rejectionReason:x,reviewedBy:me,reviewedAt:serverTimestamp()});
+  if(st==='approved'){t.update(W2,{available:increment(d.amount),onHold:increment(-d.amount),wseq:increment(1)});t.update(L('wd_'),{status:'reversed'});t.set(L('wdrev_'),{uid:d.uid,type:'reversal',amount:d.amount,status:'posted',sourceType:'withdrawal',sourceId:id,referenceId:id,reason:'Withdrawal rejected: '+x,createdBy:me,createdAt:serverTimestamp()})}else t.update(W2,{wseq:increment(1)});
+  note(t,d.uid,'Withdrawal rejected',x)}
+ alog(t,'withdrawal.'+act,'withdrawal',id,x||'');
+});
+
+const A_={};
+V.admin=async sub=>A_[sub||'dash']();
+A_.dash=async()=>{const [u,o,t,w,l]=await Promise.all([list('users'),list('offers'),list('userTasks'),list('withdrawals'),list('ledger')]);const T=(a,b)=>`<div class="tile"><span>${a}</span><b>${b}</b></div>`;return `<div class="grid">${T('Registered users',u.length)}${T('Published offers',o.filter(x=>x.status==='published').length)}${T('Tasks awaiting review',t.filter(x=>x.status==='submitted').length)}${T('Pending reward',inr(sum(t.filter(x=>x.status==='submitted'),'reward')))}${T('Withdrawals awaiting action',w.filter(x=>['requested','approved'].includes(x.status)).length)}${T('Total approved rewards',inr(sum(l.filter(x=>x.type==='reward'),'amount')))}</div><p class="mut">All figures come from live database records.</p>`};
+A_.users=async()=>{const u=newest(await list('users'));A.users=u;return rows(u,x=>`<div class="li"><div>${esc(x.name)}<small>${esc(x.email)} · joined ${dt(x.createdAt)}</small></div><div style="text-align:right">${chip(x.status)}<div class="row" style="margin-top:6px"><button class="sm ghost" data-act="uled" data-id="${esc(x.id)}">Ledger</button><button class="sm ${x.status==='active'?'bad':''}" data-act="ustat" data-id="${esc(x.id)}" data-s="${x.status==='active'?'suspended':'active'}">${x.status==='active'?'Suspend':'Reactivate'}</button></div></div></div>`)};
+A_.offers=async()=>{const o=newest(await list('offers'));A.offers=o;return `<form class="card" data-form="offer"><input type="hidden" name="id"><label>Title</label><input name="title" required maxlength="80"><label>Reward (₹)</label><input name="reward" type="number" min="1" step="1" required><label>Description</label><textarea name="description" required maxlength="400"></textarea><label>Eligibility</label><input name="eligibility" required maxlength="200"><label>Image URL (https)</label><input name="imageUrl" type="url" placeholder="https://…"><label>Offer link (https)</label><input name="link" type="url" required placeholder="https://…"><label>Ends on (optional)</label><input name="endAt" type="date"><label>Verification</label><select name="verify"><option value="manual">Manual proof (admin reviews)</option><option value="postback">Advertiser postback (automatic)</option></select><p class="mut">For postback offers put {clickid} in the offer link where the advertiser expects the click ID.</p><label>Status</label><select name="status"><option value="draft">Draft</option><option value="published">Published</option><option value="paused">Paused</option><option value="expired">Expired</option></select><button class="full">Save offer</button></form><h3>All offers</h3>${rows(o,x=>`<div class="li"><div>${esc(x.title)}<small>${inr(x.reward)} · ${x.verify==='postback'?'postback':'manual'}</small></div><div style="text-align:right">${chip(x.status)}<div class="row" style="margin-top:6px"><button class="sm ghost" data-act="oedit" data-id="${esc(x.id)}">Edit</button></div></div></div>`,'No offers yet.')}`};
+A_.tasks=async()=>{const t=newest(await list('userTasks',where('status','==','submitted')));return rows(t,x=>`<div class="card"><b>${esc(x.offerTitle)}</b> · ${inr(x.reward)}<span class="mut">${esc(x.email)} · submitted ${dt(x.submittedAt)}</span><p style="margin:8px 0;white-space:pre-wrap;word-break:break-word">${esc(x.proof)}</p><div class="row"><button class="sm" data-act="tok" data-id="${esc(x.id)}">Approve</button><button class="sm bad" data-act="tno" data-id="${esc(x.id)}">Reject</button></div></div>`,'No tasks waiting for review.')};
+A_.ledger=async()=>{const [l,u]=await Promise.all([list('ledger'),list('users')]);return `<form class="card" data-form="adjust"><b>Manual adjustment</b><label>User</label><select name="uid" required>${u.map(x=>`<option value="${esc(x.id)}">${esc(x.email)}</option>`).join('')}</select><label>Amount (₹, use − to deduct)</label><input name="amount" type="number" step="1" required><label>Reason (required)</label><input name="reason" required maxlength="120"><button class="full">Post adjustment</button></form><h3>Latest entries</h3>${rows(newest(l).slice(0,60),x=>`<div class="li"><div>${esc(x.reason)}<small>${esc(x.type)} · ${dt(x.createdAt)} · ${esc(x.uid.slice(0,6))}</small></div><div style="text-align:right"><b class="${x.amount<0?'neg':'pos'}">${inr(x.amount)}</b>${chip(x.status)}</div></div>`)}`};
+A_.wd=async()=>{const w=newest(await list('withdrawals'));return rows(w,x=>`<div class="card"><div class="li" style="border:0;padding:0"><b>${inr(x.amount)} to ${esc(x.payout)}</b>${chip(x.status)}</div><span class="mut">${esc(x.email)} · ${dt(x.createdAt)}${x.payoutRef?' · ref '+esc(x.payoutRef):''}</span><div class="row" style="margin-top:8px">${x.status==='requested'?`<button class="sm" data-act="wa" data-id="${esc(x.id)}">Approve</button>`:''}${x.status==='approved'?`<button class="sm" data-act="wp" data-id="${esc(x.id)}">Mark paid</button>`:''}${['requested','approved'].includes(x.status)?`<button class="sm bad" data-act="wr" data-id="${esc(x.id)}">Reject</button>`:''}</div></div>`,'No withdrawal requests.')};
+A_.reports=async()=>`<div class="card"><p class="mut">Download CSV reports from live data.</p><div class="row" style="margin-top:10px"><button class="ghost" data-act="exp" data-id="users">Users</button><button class="ghost" data-act="exp" data-id="userTasks">Tasks</button><button class="ghost" data-act="exp" data-id="withdrawals">Withdrawals</button><button class="ghost" data-act="exp" data-id="ledger">Ledger</button></div></div>`;
+A_.support=async()=>{const t=newest(await list('tickets'));return rows(t,x=>`<div class="card"><div class="li" style="border:0;padding:0"><b>${esc(x.subject)}</b>${chip(x.status)}</div><span class="mut">${esc(x.email)} · ${dt(x.createdAt)}</span><p style="margin:8px 0;white-space:pre-wrap">${esc(x.message)}</p>${x.reply?`<p style="font-size:14px">Reply: ${esc(x.reply)}</p>`:''}${x.status==='open'?`<button class="sm" data-act="reply" data-id="${esc(x.id)}">Reply and close</button>`:''}</div>`,'No tickets.')};
+A_.settings=async()=>{const c=await cfg();return `<form class="card" data-form="settings"><label>Minimum withdrawal (₹)</label><input name="minWithdraw" type="number" min="1" step="1" required value="${esc(c.minWithdraw??'')}"><label><input type="checkbox" name="withdrawalsEnabled" style="width:auto" ${c.withdrawalsEnabled?'checked':''}> Withdrawals open</label><label>Support contact</label><input name="supportContact" maxlength="120" value="${esc(c.supportContact||'')}"><label>Announcement banner</label><input name="announcement" maxlength="200" value="${esc(c.announcement||'')}"><button class="full">Save settings</button></form>`};
+A_.logs=async()=>{const l=newest(await list('adminLogs')).slice(0,60);return rows(l,x=>`<div class="li"><div>${esc(x.action)}<small>${esc(x.actorEmail)} · ${esc(x.targetType)} ${esc(String(x.targetId).slice(0,10))}${x.reason?' · '+esc(x.reason):''}</small></div><small>${dt(x.createdAt)}</small></div>`,'No admin activity yet.')};
+
+document.addEventListener('submit',async e=>{
+ const f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();
+ const k=f.dataset.form,v=Object.fromEntries(new FormData(f)),b=f.querySelector('button'),u=S.user;b.disabled=true;
+ try{
+  if(k==='register'){const c=await createUserWithEmailAndPassword(auth,v.email,v.pass);await updateProfile(c.user,{displayName:v.name.trim()});await setDoc(doc(db,'users',c.user.uid),{name:v.name.trim(),email:v.email,status:'active',createdAt:serverTimestamp()});sendEmailVerification(c.user).catch(()=>{})}
+  else if(k==='login')await signInWithEmailAndPassword(auth,v.email,v.pass);
+  else if(k==='profile'){await updateDoc(doc(db,'users',u.uid),{name:v.name.trim()});await updateProfile(u,{displayName:v.name.trim()});toast('Saved')}
+  else if(k==='ticket'){await addDoc(collection(db,'tickets'),{uid:u.uid,email:u.email,subject:v.subject.trim(),message:v.message.trim(),status:'open',createdAt:serverTimestamp()});toast('Sent');route()}
+  else if(k==='withdraw'){const w=await W(),amt=Math.floor(+v.amount);if(!/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(v.payout.trim()))throw new Error('Enter a valid UPI ID, like name@bank.');await setDoc(doc(db,'withdrawals',u.uid+'_'+(w.wseq||0)),{uid:u.uid,email:u.email,amount:amt,payout:v.payout.trim(),status:'requested',createdAt:serverTimestamp()});toast('Withdrawal requested');route()}
+  else if(k==='settings'){await runTransaction(db,async t=>{t.set(doc(db,'settings','config'),{minWithdraw:Math.floor(+v.minWithdraw),withdrawalsEnabled:!!v.withdrawalsEnabled,supportContact:v.supportContact.trim(),announcement:v.announcement.trim()});alog(t,'settings.update','settings','config','')});toast('Saved')}
+  else if(k==='offer'){const o={title:v.title.trim(),reward:Math.floor(+v.reward),description:v.description.trim(),eligibility:v.eligibility.trim(),imageUrl:v.imageUrl.trim(),link:v.link.trim(),endAt:v.endAt?new Date(v.endAt+'T23:59:59').getTime():null,status:v.status,verify:v.verify||'manual',updatedAt:serverTimestamp()};await runTransaction(db,async t=>{const r=v.id?doc(db,'offers',v.id):doc(collection(db,'offers'));if(v.id)t.update(r,o);else t.set(r,{...o,createdAt:serverTimestamp()});alog(t,v.id?'offer.edit':'offer.create','offer',r.id,o.status)});toast('Offer saved');route()}
+  else if(k==='adjust'){const amt=Math.trunc(+v.amount);if(!amt)throw new Error('Enter an amount.');await runTransaction(db,async t=>{const wr=doc(db,'wallets',v.uid),w=(await t.get(wr)).data()||{};if((w.available||0)+amt<0)throw new Error('This would make the balance negative.');t.set(wr,{available:increment(amt)},{merge:true});const lr=doc(collection(db,'ledger'));t.set(lr,{uid:v.uid,type:'adjustment',amount:amt,status:'posted',sourceType:'admin',sourceId:u.uid,referenceId:lr.id,reason:v.reason.trim(),createdBy:u.uid,createdAt:serverTimestamp()});note(t,v.uid,'Wallet adjusted',`${inr(amt)}: ${v.reason.trim()}`);alog(t,'ledger.adjust','user',v.uid,v.reason.trim())});toast('Posted');route()}
+ }catch(x){toast(err(x))}
+ b.disabled=false;
+});
+
+document.addEventListener('click',async e=>{
+ const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,id=el.dataset.id,u=S.user;
+ try{
+  if(a==='logout'){await signOut(auth);location.hash='#/'}
+  else if(a==='install'){if(matchMedia('(display-mode: standalone)').matches)toast('ARVEX is already installed on this device.');else if(dip){dip.prompt();dip=null}else toast('Open the Chrome menu (⋮) and tap Install app. If you only see Add to Home screen, stay on this page a few seconds and try again.')}
+  else if(a==='reset'){e.preventDefault();const m=$('#e').value;if(!m)return toast('Type your email first.');await sendPasswordResetEmail(auth,m);toast('Reset link sent to your email')}
+  else if(a==='resetme'){await sendPasswordResetEmail(auth,u.email);toast('Password reset link sent to your email')}
+  else if(a==='verify'){await sendEmailVerification(u);toast('Verification email sent')}
+  else if(a==='start'){const o=(await getDoc(doc(db,'offers',id))).data();if(!confirm(`Start "${o.title}"? Reward ${inr(o.reward)}. Read the eligibility first. This offer can be done once.`))return;await setDoc(doc(db,'userTasks',u.uid+'_'+id),{uid:u.uid,email:u.email,offerId:id,offerTitle:o.title,reward:o.reward,status:'started',startedAt:serverTimestamp()});if(https(o.link))window.open(clk(o.link,u.uid+'_'+id).replace(/&amp;/g,'&'),'_blank','noopener');route()}
+  else if(a==='proof'){dlg.innerHTML=`<form id="pf"><h4>Submit proof</h4><label for="pr">What did you complete? Add username, order ID or a link</label><textarea id="pr" required maxlength="500"></textarea><div class="row" style="margin-top:14px"><button type="button" class="ghost" data-act="close">Cancel</button><button>Submit</button></div></form>`;dlg.showModal();$('#pf').onsubmit=async ev=>{ev.preventDefault();try{await updateDoc(doc(db,'userTasks',id),{status:'submitted',proof:$('#pr').value.trim(),submittedAt:serverTimestamp()});dlg.close();toast('Submitted for review');route()}catch(z){toast(err(z))}}}
+  else if(a==='close')dlg.close();
+  else if(a==='readall'){const n=await list('notifications',where('uid','==',u.uid),where('read','==',false));await Promise.all(n.map(x=>updateDoc(doc(db,'notifications',x.id),{read:true})));route()}
+  else if(a==='tok'){await taskReview(id,true,ask('Optional note for the user:'));toast('Approved');route()}
+  else if(a==='tno'){await taskReview(id,false,ask('Reason for rejection (required):',true));toast('Rejected');route()}
+  else if(a==='wa'){await wdAct(id,'approve');toast('Approved');route()}
+  else if(a==='wp'){await wdAct(id,'paid',ask('Payout reference / UTR (required):',true));toast('Marked paid');route()}
+  else if(a==='wr'){await wdAct(id,'reject',ask('Reason for rejection (required):',true));toast('Rejected');route()}
+  else if(a==='ustat'){const r=el.dataset.s==='suspended'?ask('Reason for suspension (required):',true):'';await runTransaction(db,async t=>{t.update(doc(db,'users',id),{status:el.dataset.s});alog(t,'user.'+el.dataset.s,'user',id,r)});route()}
+  else if(a==='uled'){const l=newest(await list('ledger',where('uid','==',id)));dlg.innerHTML=`<h4>Ledger</h4>${rows(l,x=>`<div class="li"><div>${esc(x.reason)}<small>${esc(x.type)} · ${dt(x.createdAt)}</small></div><b class="${x.amount<0?'neg':'pos'}">${inr(x.amount)}</b></div>`)}<button class="ghost full" data-act="close">Close</button>`;dlg.showModal()}
+  else if(a==='oedit'){const o=A.offers.find(x=>x.id===id),f=$('form[data-form=offer]');for(const k of ['id','title','reward','description','eligibility','imageUrl','link','status','verify'])f.elements[k].value=k==='id'?id:(o[k]??(k==='verify'?'manual':''));f.elements.endAt.value=o.endAt?new Date(o.endAt).toISOString().slice(0,10):'';f.scrollIntoView()}
+  else if(a==='reply'){const r=ask('Your reply (required):',true);await updateDoc(doc(db,'tickets',id),{reply:r,status:'closed',repliedAt:serverTimestamp()});route()}
+  else if(a==='exp'){const d=await list(id),fx=x=>Object.fromEntries(Object.entries(x).filter(([k])=>!['proof'].includes(k)||id==='userTasks').map(([k,v])=>[k,v?.toDate?v.toDate().toISOString():v]));csv('arvex_'+id,d.map(fx))}
+ }catch(x){if(x.message!=='Cancelled.')toast(err(x))}
+});
+</script>
+</body></html>
